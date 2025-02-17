@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AspSession42.Controllers
 {
     [ApiController]
-    [Authorize]
+   
     public class EmployeeController : ControllerBase
     {
         private RoadOfRussiaContext db;

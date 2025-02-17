@@ -49,6 +49,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
         };
     });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder => builder
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .SetIsOriginAllowed((host) => true)
+            .AllowAnyHeader());
+});
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -60,7 +70,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseRateLimiter();
 app.MapControllers();
-
+app.UseCors("CorsPolicy");
 
 app.Map("SignIn", async (Employee emp, RoadOfRussiaContext db) =>
 {
