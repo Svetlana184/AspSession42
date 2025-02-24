@@ -25,7 +25,7 @@ namespace AspSession42.Controllers
                          e.EventStatus,
                          e.EventDescription,
                          e.DateOfEvent,
-                         EventManagers = db.Employees.FirstOrDefault(p => p.IdEmployee.ToString() == e.EventManagers),
+                         EventManagers = db.Employees.FirstOrDefault(p => p.IdEmployee.ToString() == e.EventManagers)!.IdEmployee,
                          e.TypeOfClass
                      };
             return ev.AsQueryable();
