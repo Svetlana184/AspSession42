@@ -19,14 +19,10 @@ namespace AspSession42.Controllers
             var ev = from e in db.Events
                      select new
                      {
-                         e.IdEvent,
-                         e.EventName,
-                         e.TypeOfEvent,
-                         e.EventStatus,
-                         e.EventDescription,
-                         e.DateOfEvent,
-                         EventManagers = db.Employees.FirstOrDefault(p => p.IdEmployee.ToString() == e.EventManagers)!.IdEmployee,
-                         e.TypeOfClass
+                         Title = e.EventName,
+                         Date = e.DateOfEvent,
+                         Description = e.EventDescription,
+                         Author = e.EventManagers
                      };
             return ev.AsQueryable();
 
